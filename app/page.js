@@ -12,7 +12,7 @@ export default async function Home() {
   const quote = quotes[randomIndex];
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex-1 w-full">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
       <div className="mx-auto max-w-xl pt-4">
         <p className="text-xl font-semibold">Welcome {user.name}!!!</p>
         <p className="mt-8 font-semibold">Search</p>

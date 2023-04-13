@@ -64,7 +64,7 @@ export async function UserComponent({ id }) {
                 </div>
             )}
             {user && (<Link href={`/upload/${user.id}`} className="btn btn-block mt-4">Upload Image</Link>)}
-            <Link href="/" className="btn btn-block btn-secondary mt-8">Dashboard</Link>
+            <Link href="/" className="btn btn-block btn-secondary mt-8 mb-4">Dashboard</Link>
         </>
     );
 }

@@ -20,13 +20,9 @@ export default async function RootLayout({ children }) {
       </head>
       <body>
         <SessionProvider session={session}>
-          <div className="flex flex-col h-full">
             <Header session={session} />
-            <div className="bg-slate-100 flex-1">
-              {children}
-            </div>
+            <div className="bg-slate-100 flex-1 grid">{children}</div>
             <Footer />
-          </div>
         </SessionProvider>
       </body>
     </html>
