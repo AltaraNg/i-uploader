@@ -11,21 +11,63 @@ export default function Camera({ onPhotoTaken }) {
     const videoRef = useRef(null);
     const canvasRef = useRef(null);
 
+    // const startCamera = () => {
+    //     const constraints = {
+    //         video: {
+    //             facingMode: { exact: "environment" },
+    //         },
+    //     };
+    //     navigator.mediaDevices
+    //         .getUserMedia(constraints)
+    //         .then((strm) => {
+    //             videoRef.current.srcObject = strm;
+    //             videoRef.current.play();
+    //             setStream(strm);
+    //             console.log(stream);
+    //         })
+    //         .catch((error) => {
+    //             console.error(error);
+    //             setValidCamera(false);
+    //         });
+    // };
+
     const startCamera = () => {
-        navigator.mediaDevices.getUserMedia({ video: true })
-            .then(strm => {
-                console.log("🚀 ~ file: Camera.js:24 ~ startCamera ~ strm:", strm)
+        const constraints = {
+            video: {
+                facingMode: { exact: "environment" },
+            },
+        };
+
+        navigator.mediaDevices
+            .getUserMedia(constraints)
+            .then((strm) => {
                 videoRef.current.srcObject = strm;
                 videoRef.current.play();
                 setStream(strm);
-                console.log(stream)
+                console.log(stream);
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error(error);
-                setValidCamera(false);
+
+                // Try again without the facingMode constraint
+                const fallbackConstraints = {
+                    video: true,
+                };
+
+                navigator.mediaDevices
+                    .getUserMedia(fallbackConstraints)
+                    .then((strm) => {
+                        videoRef.current.srcObject = strm;
+                        videoRef.current.play();
+                        setStream(strm);
+                        console.log(stream);
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                        setValidCamera(false);
+                    });
             });
     };
-
 
     const stopCamera = () => {
         if (stream) {
@@ -79,7 +121,7 @@ export default function Camera({ onPhotoTaken }) {
                     <video ref={videoRef} width="640" height="480" className="rounded-lg"></video>
                     <canvas ref={canvasRef} width="640" height="480" style={{ display: 'none' }}></canvas>
                     <button onClick={capture} className="btn btn-block mt-4">Take Photo</button>
-                    <button onClick={goHome} className="btn btn-block btn-secondary mt-8">Go Home</button>
+                    <button onClick={goHome} className="btn btn-block btn-secondary mt-8 mb-4">Go Home</button>
                 </div>
             }
         </div>
