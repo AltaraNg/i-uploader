@@ -4,6 +4,7 @@ import cn from 'classnames';
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react"
+import Image from "next/image"
 
 export default function Login() {
     const router = useRouter();
@@ -15,7 +16,9 @@ export default function Login() {
     const handleSubmit = async () => {
         setLoading(true)
         try {
-            await signIn("credentials", { redirect: false, staff_id: email, password })
+            const res = await signIn("credentials", { redirect: false, staff_id: email, password })
+            console.log("🚀 ~ file: page.js:20 ~ handleSubmit ~ res:", res)
+            console.log(router);
             router.push("/");
         } catch (error) {
             setLoading(false)
@@ -27,14 +30,13 @@ export default function Login() {
             <div className="flex flex-1 flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
                 <div className="mx-auto w-full max-w-sm lg:w-96">
                     <div>
-                        <img
-                            className="h-12 w-auto"
-                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                            alt="Your Company"
+                        <Image
+                            width={120}
+                            height={120}
+                            src="/images/logo.png"
+                            alt="Altara"
                         />
-                        <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">
-                            Sign in to your account
-                        </h2>
+                        <h2 className="mt-6 text-xl font-semibold tracking-tight text-gray-900">Sign in to your account</h2>
                     </div>
 
                     <div className="mt-8">
@@ -45,7 +47,14 @@ export default function Login() {
                                         <span className="label-text">Staff ID</span>
                                     </label>
                                     <div className="">
-                                        <input id="staff_id" type="text" placeholder="Ex. ALT/12/34" className="text-input" value={email} onChange={e => setEmail(e.target.value)} />
+                                        <input
+                                            id="staff_id"
+                                            type="text"
+                                            placeholder="Ex. ALT/12/34"
+                                            className="text-input"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                        />
                                     </div>
                                 </div>
                                 <div>
@@ -53,11 +62,18 @@ export default function Login() {
                                         <span className="label-text">Password</span>
                                     </label>
                                     <div className="">
-                                        <input id="password" type="password" placeholder="Type password here....." className="text-input" value={password} onChange={e => setPassword(e.target.value)} />
+                                        <input
+                                            id="password"
+                                            type="password"
+                                            placeholder="Type password here....."
+                                            className="text-input"
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                        />
                                     </div>
                                 </div>
                                 <button
-                                    className={cn("btn w-full", loading && 'loading')}
+                                    className={cn("btn w-full", loading && "loading")}
                                     disabled={loading}
                                     type="button"
                                     onClick={() => handleSubmit()}

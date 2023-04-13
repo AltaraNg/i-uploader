@@ -16,4 +16,7 @@ module.exports = withPWA({
   experimental: {
     appDir: true,
   },
+  images: {
+    domains: ["tailwindui.com"],
+  },
 });
