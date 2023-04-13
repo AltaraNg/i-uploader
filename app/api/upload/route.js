@@ -5,9 +5,9 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 const s3 = new aws.S3({
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    region: process.env.AWS_REGION,
+    accessKeyId: process.env.NEXT_AWS_ACCESS_KEY,
+    secretAccessKey: process.env.NEXT_AWS_SECRET_KEY,
+    region: process.env.NEXT_AWS_REGION,
 });
 
 export async function POST(request) {
@@ -20,7 +20,7 @@ export async function POST(request) {
 
         const result = await s3
             .upload({
-                Bucket: process.env.AWS_BUCKET_NAME, Key: key, Body: buffer, ContentType: 'image/jpeg',
+                Bucket: process.env.NEXT_AWS_BUCKET_NAME, Key: key, Body: buffer, ContentType: 'image/jpeg',
                 ContentDisposition: 'inline'
             })
             .promise();
