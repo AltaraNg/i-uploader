@@ -11,7 +11,7 @@ export async function middleware(req) {
         return NextResponse.redirect(url);
     }
 
-    if (isProtected(pathname) && !token) {
+    if (!pathname.startsWith("/login") && !token) {
         const url = new URL(`/login`, req.url);
         url.searchParams.set("callbackUrl", pathname);
         return NextResponse.redirect(url);
@@ -20,6 +20,6 @@ export async function middleware(req) {
     return res;
 }
 
-function isProtected(pathname) {
-    return pathname == "/" || pathname.startsWith("/user") || pathname.startsWith("/upload")
-}
+export const config = {
+    matcher: ["/", "/login", "/user/:path*", "/upload/:path*"],
+};

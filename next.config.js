@@ -3,6 +3,9 @@
 //   experimental: {
 //     appDir: true,
 //   },
+//   images: {
+//     domains: ["tailwindui.com"],
+//   },
 // };
 
 // module.exports = nextConfig;
