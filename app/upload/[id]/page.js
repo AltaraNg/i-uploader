@@ -34,7 +34,7 @@ export default function Upload({ params }) {
     }
 
     return (
-        <div className="flex justify-center h-full">
+        <div className="flex justify-center h-full pb-2">
             {!photo && (
                 <div>
                     <Camera onPhotoTaken={(photo) => setPhoto(photo)} />
@@ -57,7 +57,7 @@ export default function Upload({ params }) {
                         <button className={cn("btn btn-block sm:w-1/2 mt-2 sm:mt-0", loading && 'loading')} disabled={loading} onClick={() => openFilePicker()}>
                             Upload
                         </button>
-                        <button onClick={() => setPhoto(null)} className="btn btn-accent btn-block sm:w-1/2 mt-2 sm:mt-0">
+                        <button onClick={() => setPhoto(null)} className="btn btn-accent btn-block sm:w-1/2 mt-4 sm:mt-0">
                             Dismiss
                         </button>
                     </div>
