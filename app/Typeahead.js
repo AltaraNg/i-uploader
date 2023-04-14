@@ -63,8 +63,10 @@ const Typeahead = ({ placeholder }) => {
             {results && results.length > 0 && (
                 <ul className="c-dropdown">
                     {results.map((result) => (
-                        <li key={result.id} className={cn('px-4 py-2 cursor-pointer hover:bg-gray-100')} onClick={() => handleSelection(result)}>
-                            {result.full_name}
+                        <li key={result.id} className={cn('flex gap-2 px-4 py-2 cursor-pointer hover:bg-gray-100')} onClick={() => handleSelection(result)}>
+                            <span className="w-16">{result.id}</span>
+                            <span className="flex-1">{result.full_name}</span>
+                            <span>{result.telephone}</span>
                         </li>
                     ))}
                 </ul>
