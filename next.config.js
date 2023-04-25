@@ -20,6 +20,6 @@ module.exports = withPWA({
     appDir: true,
   },
   images: {
-    domains: ["tailwindui.com"],
+    domains: ["tailwindui.com", "altara-staging.s3.amazonaws.com", "altaraone.s3.amazonaws.com"],
   },
 });
