@@ -28,7 +28,9 @@ export async function POST(request) {
         const { user } = await getServerSession(authOptions);
 
         const sql = `UPDATE documents SET ${filename} = '${result.key}', user_id = ${user.id} WHERE customer_id = ${id}`;
+        const verificationSql = `UPDATE verifications SET ${path} = 1 WHERE customer_id = ${id}`;
         await queryPromise(pool, sql);
+        await queryPromise(pool, verificationSql);
         return NextResponse.json({ message: "Requested action successful" });
     } catch (error) {
         return NextResponse.json({
