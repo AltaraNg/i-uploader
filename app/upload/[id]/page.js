@@ -10,15 +10,19 @@ export default function Upload({ params }) {
     const [photo, setPhoto] = useState(null)
     const [loading, setLoading] = useState(false)
     const [type, setType] = useState("passport_url")
+    const [fileName, setFilename] = useState("")
 
     const openFilePicker = async () => {
+        if (type === "other" && !fileName) {
+            return
+        }
         setLoading(true)
         const base64data = photo.replace(/^data:.+;base64,/, '')
 
         try {
             const response = await fetch('/api/upload', {
                 method: 'POST',
-                body: JSON.stringify({ id: params.id, filename: type, data: base64data })
+                body: JSON.stringify({ id: params.id, filename: type, data: base64data, custom: fileName })
             })
 
             await response.json()
@@ -33,6 +37,10 @@ export default function Upload({ params }) {
         setType(e.target.value)
     }
 
+    const handleChange = (e) => {
+        setFilename(e.target.value)
+    }
+
     return (
         <div className="flex justify-center h-full pb-2">
             {!photo && (
@@ -45,10 +53,21 @@ export default function Upload({ params }) {
                     <h1 className="my-4 font-bold tracking-tight text-gray-900 text-2xl">
                         Upload Image
                     </h1>
-                    <select className="select select-info w-full max-w-xs mb-4" defaultValue="passport_url" onChange={handleSelect}>
-                        <option value="id_card_url">ID Card</option>
-                        <option value="passport_url">Passport</option>
-                    </select>
+                    <div className="flex gap-4 items-end mb-4">
+                        <select className="select select-info w-full max-w-xs focus:outline-0 focus:ring-0" defaultValue="passport_url" onChange={handleSelect}>
+                            <option value="id_card_url">ID Card</option>
+                            <option value="passport_url">Passport</option>
+                            <option value="other">Others</option>
+                        </select>
+                        {type == "other" && (
+                            <div className="form-control w-full max-w-xs">
+                                <label className="label py-0">
+                                    <span className="label-text">What is your file name?</span>
+                                </label>
+                                <input type="text" placeholder="Type here" onChange={handleChange} className="input input-info w-full max-w-xs focus:outline-0 focus:ring-0"  />
+                            </div>
+                        )}
+                    </div>
                     <div className="aspect-w-10 aspect-h-7 block w-full overflow-hidden rounded-lg">
                         <img src={photo} alt="" className="object-cover" />
                     </div>

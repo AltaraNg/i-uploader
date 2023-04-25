@@ -2,12 +2,13 @@
 
 import React from 'react'
 import { signOut } from "next-auth/react"
+import Link from "next/link";
 
 const Header = ({ session }) => {
     return (
         <div className="navbar bg-base-100">
             <div className="flex-1">
-                <a className="btn btn-ghost normal-case text-xl">Altara</a>
+                <Link href="/" className="btn btn-ghost normal-case text-xl">Altara</Link>
             </div>
             <div className="flex-none">
                 {session && (
