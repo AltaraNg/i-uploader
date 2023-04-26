@@ -19,7 +19,7 @@ export async function getDocuments(id) {
     try {
         const sql =
             "SELECT name, document_url FROM new_documents WHERE documentable_id = " +
-            id;
+            id + " ORDER BY id DESC";
         const results = await queryPromise(pool, sql);
         if (results.length > 0) {
             return results;
