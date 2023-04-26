@@ -53,18 +53,18 @@ export default function Upload({ params }) {
                     <h1 className="my-4 font-bold tracking-tight text-gray-900 text-2xl">
                         Upload Image
                     </h1>
-                    <div className="flex gap-4 items-end mb-4">
-                        <select className="select select-info w-full max-w-xs focus:outline-0 focus:ring-0" defaultValue="passport_url" onChange={handleSelect}>
+                    <div className="sm:flex gap-4 items-end mb-4">
+                        <select className="select select-info w-full sm:max-w-xs focus:outline-0 focus:ring-0" defaultValue="passport_url" onChange={handleSelect}>
                             <option value="id_card_url">ID Card</option>
                             <option value="passport_url">Passport</option>
                             <option value="other">Others</option>
                         </select>
                         {type == "other" && (
-                            <div className="form-control w-full max-w-xs">
+                            <div className="form-control w-full sm:max-w-xs mt-4">
                                 <label className="label py-0">
                                     <span className="label-text">What is your file name?</span>
                                 </label>
-                                <input type="text" placeholder="Type here" onChange={handleChange} className="input input-info w-full max-w-xs focus:outline-0 focus:ring-0"  />
+                                <input type="text" placeholder="Type here" onChange={handleChange} className="input input-info w-full sm:max-w-xs focus:outline-0 focus:ring-0"  />
                             </div>
                         )}
                     </div>
