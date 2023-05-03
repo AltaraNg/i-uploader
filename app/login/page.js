@@ -23,8 +23,8 @@ export default function Login() {
             if (!ok) {
                 setError(true);
             }
-            setLoading(false);
             router.push("/");
+            setLoading(false);
         } catch (error) {
             setLoading(false)
         }
