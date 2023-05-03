@@ -24,6 +24,7 @@ export default function Login() {
                 setError(true);
             }
             console.log("Debugging.........")
+            console.log(router);
             router.push("/");
             setLoading(false);
         } catch (error) {
