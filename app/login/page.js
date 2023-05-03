@@ -2,13 +2,11 @@
 
 import cn from 'classnames';
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react"
 import Image from "next/image"
 import Alert from "@/components/Alert";
 
 export default function Login() {
-    const router = useRouter();
     const [email, setEmail] = useState("")
     const [error, setError] = useState(false);
     const [password, setPassword] = useState("")
@@ -23,9 +21,7 @@ export default function Login() {
             if (!ok) {
                 setError(true);
             }
-            console.log("Debugging.........")
-            console.log(router);
-            router.replace("/");
+            window.location.href = '/';
             setLoading(false);
         } catch (error) {
             setLoading(false)
