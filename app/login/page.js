@@ -23,6 +23,7 @@ export default function Login() {
             if (!ok) {
                 setError(true);
             }
+            console.log("Debugging.........")
             router.push("/");
             setLoading(false);
         } catch (error) {
