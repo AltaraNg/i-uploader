@@ -25,7 +25,7 @@ export default function Login() {
             }
             console.log("Debugging.........")
             console.log(router);
-            router.push("/");
+            router.replace("/");
             setLoading(false);
         } catch (error) {
             setLoading(false)
