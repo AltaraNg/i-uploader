@@ -14,10 +14,12 @@ export const authOptions = {
                 })
                 const user = await res.json()
 
-                if (res.ok && user) {
+                // Roles permitted
+                const permittedRoles = [8,9, 21, 22]
+                if (res.ok && user && permittedRoles.includes(user.role)) {
                     return {
                         id: user.user_id,
-                        name:  user.user_name,
+                        name: user.user_name,
                         role: user.role,
                     }
                 }
