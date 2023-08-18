@@ -56,7 +56,6 @@ export default function VerifyLocation({ params }) {
       })
       .then((res) => {
        let  data = res.results[0].formatted
-        console.log(data)
         resp =  data
       })
 
@@ -67,7 +66,6 @@ export default function VerifyLocation({ params }) {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition)
     } else {
-      console.log("Geolocation is not supported by this browser.")
     }
   }
 
@@ -83,7 +81,6 @@ export default function VerifyLocation({ params }) {
       await response.json()
       router.push(`/user/${params.id}`);
   } catch (error) {
-    console.log(error)
       setLoading(false)
   }
   }
