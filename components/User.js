@@ -90,7 +90,7 @@ export async function UserComponent({ id }) {
                         </div>
                         <div>
                             <p className="c-label">Address:</p>
-                            <p className=" flex justify-between"><span className="c-text">{user.address}</span><Link href={`/user/${user.id}/verify-location`}><span className="btn p-2 text-sm rounded-md bg-emerald-300 text-white" >
+                            <p className=" flex justify-between"><span className="c-text">{user.address}</span><Link href={`/user/${user.id}/verify-location`}><span className="btn p-2 text-xs rounded-md text-white" >
                                 Verify Address
                             </span></Link></p>
                             
