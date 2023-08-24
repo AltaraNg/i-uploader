@@ -10,7 +10,7 @@ export async function POST(request) {
         const { id, add_street, add_addinfo_description } = await request.json();
 
         var sql =
-        `UPDATE customers SET add_street = '${add_street}', add_addinfo_description = '${add_addinfo_description}', add_houseno = '', add_nbstop = '', city = '', state = '' WHERE id = ${id}`;
+        `UPDATE customers SET add_street = '${add_street}', add_addinfo_description = '${add_addinfo_description}', add_houseno = '', add_nbstop = '', city = '', state = '', area_address = '' WHERE id = ${id}`;
         const results = await queryPromise(pool, sql);
         return NextResponse.json(
             {
