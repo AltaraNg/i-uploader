@@ -133,14 +133,14 @@ export default function VerifyLocation({ params }) {
                 {loc !== undefined && (
                   <div>
                     <p className="c-label">Location:</p>
-                    <p className="c-text">{loc}</p>
+                    <textarea className="w-full text-lg font-semibold" onChange={(value) => setLoc(value.target.value)} value={loc}></textarea>
                   </div>
                 )}
 
                 <div className="pt-10">
-                  <btn className={cn("btn btn-block sm:w-1/2 mt-2 sm:mt-0", loading && 'loading')} disabled={loading} onClick={() => saveAddress()} >
+                  <button className={cn("btn btn-block text-white sm:w-1/2 mt-2 sm:mt-0", loading && 'loading')} disabled={loading} onClick={() => saveAddress()} >
                     Save address
-                  </btn>
+                  </button>
                 </div>
               </div>
             </div>
