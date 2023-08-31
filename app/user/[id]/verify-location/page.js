@@ -31,14 +31,14 @@ export default function VerifyLocation({ params }) {
   }, [])
 
   async function showPosition(position) {
-    let res = await getInWords(
+    let res = await coordinateToPhysicalAddress(
       position.coords.longitude,
       position.coords.latitude
     )
     setLoc(res);
   }
 
-  async function getInWords(longitude, latitude) {
+  async function coordinateToPhysicalAddress(longitude, latitude) {
     let apiKey = "d0c67958a1f64018a97ee4eeb2aec4f0"
     let resp;
     await fetch(
