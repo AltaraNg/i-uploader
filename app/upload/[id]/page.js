@@ -26,7 +26,7 @@ export default function Upload({ params }) {
           id: params.id,
           filename: type,
           data: base64data,
-          custom: type,
+          custom: type === "other" ? fileName : type,
         }),
       });
       await response.json();
