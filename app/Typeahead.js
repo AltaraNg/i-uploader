@@ -14,12 +14,10 @@ const Typeahead = ({ placeholder }) => {
     const debouncedSearch = useRef(
         debounce(async (value) => {
             try {
-                const response = await fetch(`/api/customers?term=${value}`);
-                const result = await response.json();
-                setResults(result.results);
-            } catch (error) {
-                console.log(error);
-            }
+              const response = await fetch(`/api/customers?term=${value}`);
+              const result = await response.json();
+              setResults(result.results);
+            } catch (error) {}
         }, 500)
     ).current;
 

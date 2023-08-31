@@ -19,10 +19,7 @@ export async function UserComponent({ id }) {
   try {
     user = await getUser(id);
     documents = await getDocuments(id);
-    console.log("Documents", documents);
-  } catch (error) {
-    console.error(error);
-  }
+  } catch (error) {}
 
   const utilityBillDocument = documents.find(
     (item) => item.name === "utility_bill_url"

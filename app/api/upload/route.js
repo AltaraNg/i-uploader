@@ -14,9 +14,7 @@ const s3 = new aws.S3({
 export async function POST(request) {
     try {
         const { id, filename, data, custom } = await request.json();
-        console.log("Custommm",custom)
-        // console.log("Data", data)
-        // return
+        
         const path = filename.replace("_url", "")
 
         const buffer = Buffer.from(data, "base64");
@@ -39,7 +37,6 @@ export async function POST(request) {
           const documentableType = mysql.escape("App\\Models\\Customer");
           const newDocSql = `INSERT INTO new_documents (user_id, documentable_type, documentable_id, document_type, document_url, status, name) VALUES (${user.id}, ${documentableType}, ${id}, '${custom}', '${result.Key}', 'pending', '${custom}')`;
           await queryPromise(pool, newDocSql);
-        //   console.log("response", res.json());
         } else {
           const sql = `UPDATE documents SET ${filename} = '${result.Key}', user_id = ${user.id} WHERE customer_id = ${id}`;
           const verificationSql = `UPDATE verifications SET ${path} = 1 WHERE customer_id = ${id}`;
