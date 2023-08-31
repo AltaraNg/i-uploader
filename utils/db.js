@@ -14,6 +14,20 @@ export async function getUser(id) {
         return null
     }
 }
+export async function getNewDocUser(id) {
+    try {
+        const sql =
+            "SELECT c.id, CONCAT(c.first_name, ' ', c.last_name) AS full_name, d.utility_bill_url, d.residence_bill_url, c.email, c.gender,  CONCAT(c.add_street, ', ', c.area_address) AS address FROM customers AS c JOIN new_documents AS d ON d.customer_id = c.id WHERE c.id = " +
+            id;
+        const results = await queryPromise(pool, sql);
+        if (results.length > 0) {
+            return results[0];
+        }
+        return null
+    } catch (error) {
+        return null
+    }
+}
 
 export async function getDocuments(id) {
     try {

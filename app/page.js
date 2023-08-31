@@ -10,6 +10,7 @@ export default async function Home() {
 
   const randomIndex = Math.floor(Math.random() * quotes.length);
   const quote = quotes[randomIndex];
+  // console.log("Accessssss", process.env.SQL_HOST)
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
