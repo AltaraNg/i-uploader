@@ -14,6 +14,7 @@ export async function getUser(id) {
         return null
     }
 }
+
 export async function getNewDocUser(id) {
     try {
         const sql =

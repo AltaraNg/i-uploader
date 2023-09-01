@@ -37,6 +37,7 @@ export async function UserComponent({ id }) {
   
     return capitalizedWords;
   }
+  
 
   return (
     <>
