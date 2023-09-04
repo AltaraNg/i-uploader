@@ -139,16 +139,6 @@ export async function UserComponent({ id }) {
           </div>
         </div>
       )}
-      {residenceProofDocument && (
-        <div className="flex-1">
-          <p className="c-label">Residence Proof:</p>
-          <img
-            className="aspect-[4/5] w-full flex-none rounded-2xl object-cover"
-            src={imgSrc(residenceProofDocument.document_url)}
-            alt="image"
-          />
-        </div>
-      )}
       {documents.length > 0 && (
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 bg-slate-50 p-4 mt-4 mb-6 rounded">
           {documents.map((item, key) => (
