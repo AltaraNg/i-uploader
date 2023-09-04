@@ -16,28 +16,28 @@ export async function UserComponent({ id }) {
   let documents = []
 
   try {
-    user = await getUser(id);
-    documents = await getDocuments(id);
+    user = await getUser(id)
+    documents = await getDocuments(id)
   } catch (error) {}
-
 
   const utilityBillDocument = documents.find(
     (item) => item.name === "utility_bill_url"
-  );
+  )
   const residenceProofDocument = documents.find(
     (item) => item.name === "residence_proof_url"
-  );
+  )
 
-  const capitalizeStringWithoutUnderscore =(str)=> {
-    const words = str.split('_');
+  const capitalizeStringWithoutUnderscore = (str) => {
+    const words = str.split("_")
     const capitalizedWords = words
-      .map(word => word === "url" ? "" : word.charAt(0).toUpperCase() + word.slice(1))
-      .filter(word => word !== "")
-      .join(' ');
-  
-    return capitalizedWords;
+      .map((word) =>
+        word === "url" ? "" : word.charAt(0).toUpperCase() + word.slice(1)
+      )
+      .filter((word) => word !== "")
+      .join(" ")
+
+    return capitalizedWords
   }
-  
 
   return (
     <>
@@ -119,7 +119,9 @@ export async function UserComponent({ id }) {
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 bg-slate-50 p-4 mt-4 mb-6 rounded">
           {documents.map((item, key) => (
             <div key={key}>
-              <p className="c-label">{capitalizeStringWithoutUnderscore(item.name)}</p>
+              <p className="c-label">
+                {capitalizeStringWithoutUnderscore(item.name)}
+              </p>
               <img
                 className="flex-none w-full rounded-2xl object-contain"
                 src={imgSrc(item.document_url)}
@@ -145,7 +147,7 @@ export async function UserComponent({ id }) {
         </Link>
       )}
     </>
-  );
+  )
 }
 
 export function Loading() {
