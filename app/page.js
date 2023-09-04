@@ -1,8 +1,8 @@
-import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/pages/api/auth/[...nextauth]';
-import Typeahead from './Typeahead';
-import quotes from '@/utils/quotes.json';
-import Quote from '@/components/Quote';
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import Typeahead from "./Typeahead";
+import quotes from "@/utils/quotes.json";
+import Quote from "@/components/Quote";
 
 export default async function Home() {
   const { user } = await getServerSession(authOptions);
@@ -23,6 +23,6 @@ export default async function Home() {
 }
 
 export const metadata = {
-  title: 'Altara|Photo App',
-  description: 'This is a photo app from Altara',
+  title: "Altara|Photo App",
+  description: "This is a photo app from Altara",
 };
