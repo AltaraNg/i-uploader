@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
-  images: {
-    domains: ["tailwindui.com", "altara-staging.s3.amazonaws.com", "altaraone.s3.amazonaws.com"],
-  },
+   experimental: {
+      appDir: true,
+   },
+   images: {
+      domains: ["tailwindui.com", "altara-staging.s3.amazonaws.com", "altaraone.s3.amazonaws.com"],
+   },
 };
 
 module.exports = nextConfig;
