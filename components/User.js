@@ -99,20 +99,6 @@ export async function UserComponent({ id }) {
                   className="aspect-[4/5] w-full flex-none rounded-2xl object-cover"
                   src={imgSrc(utilityBillDocument.document_url)}
                   alt="image"
-                  width={100}
-                  height={100}
-                />
-              </div>
-            )}
-            {residenceProofDocument && (
-              <div className="flex-1">
-                <p className="c-label">Residence Proof:</p>
-                <img
-                  className="aspect-[4/5] w-full flex-none rounded-2xl object-cover"
-                  src={imgSrc(residenceProofDocument.document_url)}
-                  alt="image"
-                  width={100}
-                  height={100}
                 />
               </div>
             )}
