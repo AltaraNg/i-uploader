@@ -7,37 +7,38 @@ const myArray = [1, 2, 3, 4];
 
 const imgSrc = (img) => {
   if (!img) {
-    return "@/public/images/avatar.webp";
+    return "/images/avatar.webp"
   }
-  return `${process.env.S3_HOST}/${img}`;
-};
+  return `${process.env.S3_HOST}/${img}`
+}
 
 export async function UserComponent({ id }) {
-  let user = null;
-  let documents = [];
+  let user = null
+  let documents = []
 
   try {
-    user = await getUser(id);
-    documents = await getDocuments(id);
+    user = await getUser(id)
+    documents = await getDocuments(id)
   } catch (error) {}
 
   const utilityBillDocument = documents.find(
     (item) => item.name === "utility_bill_url"
-  );
+  )
   const residenceProofDocument = documents.find(
     (item) => item.name === "residence_proof_url"
-  );
+  )
 
-  const capitalizeStringWithoutUnderscore =(str)=> {
-    const words = str.split('_');
+  const capitalizeStringWithoutUnderscore = (str) => {
+    const words = str.split("_")
     const capitalizedWords = words
-      .map(word => word === "url" ? "" : word.charAt(0).toUpperCase() + word.slice(1))
-      .filter(word => word !== "")
-      .join(' ');
-  
-    return capitalizedWords;
+      .map((word) =>
+        word === "url" ? "" : word.charAt(0).toUpperCase() + word.slice(1)
+      )
+      .filter((word) => word !== "")
+      .join(" ")
+
+    return capitalizedWords
   }
-  
 
   return (
     <>
@@ -79,8 +80,6 @@ export async function UserComponent({ id }) {
                 className="aspect-[4/5] w-full flex-none rounded-2xl object-cover"
                 src={imgSrc(user.id_card_url)}
                 alt="image"
-                width={100}
-                height={100}
               />
             </div>
             <div className="flex-1">
@@ -89,8 +88,6 @@ export async function UserComponent({ id }) {
                 className="aspect-[4/5] w-full flex-none rounded-2xl object-cover"
                 src={imgSrc(user.passport_url)}
                 alt="image"
-                width={100}
-                height={100}
               />
             </div>
           </div>
@@ -142,11 +139,23 @@ export async function UserComponent({ id }) {
           </div>
         </div>
       )}
+      {residenceProofDocument && (
+        <div className="flex-1">
+          <p className="c-label">Residence Proof:</p>
+          <img
+            className="aspect-[4/5] w-full flex-none rounded-2xl object-cover"
+            src={imgSrc(residenceProofDocument.document_url)}
+            alt="image"
+          />
+        </div>
+      )}
       {documents.length > 0 && (
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 bg-slate-50 p-4 mt-4 mb-6 rounded">
           {documents.map((item, key) => (
             <div key={key}>
-              <p className="c-label">{capitalizeStringWithoutUnderscore(item.name)}</p>
+              <p className="c-label">
+                {capitalizeStringWithoutUnderscore(item.name)}
+              </p>
               <img
                 className="flex-none w-full rounded-2xl object-contain"
                 src={imgSrc(item.document_url)}
@@ -172,7 +181,7 @@ export async function UserComponent({ id }) {
         </Link>
       )}
     </>
-  );
+  )
 }
 
 export function Loading() {
