@@ -1,3 +1,24 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "prettier",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["react", "prettier"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "react/react-in-jsx-scope": "off" // React 17 has JSX Transform, no need for React import
+    // Additional rules or overrides go here
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  }
 }

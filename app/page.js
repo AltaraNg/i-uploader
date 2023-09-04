@@ -1,9 +1,8 @@
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import Typeahead from "./Typeahead";
-import quotes from "@/utils/quotes.json";
-import Quote from "@/components/Quote";
-
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
+import Typeahead from './Typeahead';
+import quotes from '@/utils/quotes.json';
+import Quote from '@/components/Quote';
 
 export default async function Home() {
   const { user } = await getServerSession(authOptions);
@@ -17,7 +16,7 @@ export default async function Home() {
         <p className="text-xl font-semibold">Welcome {user.name}!!!</p>
         <p className="mt-8 font-semibold">Search</p>
         <Typeahead placeholder="Type customer's phone number or id....." />
-        {quote && (<Quote quote={quote} />)}
+        {quote && <Quote quote={quote} />}
       </div>
     </div>
   );
