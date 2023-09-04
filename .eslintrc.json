@@ -14,11 +14,13 @@
     }
   },
   "rules": {
+    "react/prop-types": "off",
     "react/react-in-jsx-scope": "off" // React 17 has JSX Transform, no need for React import
     // Additional rules or overrides go here
   },
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "es6": true
   }
 }
