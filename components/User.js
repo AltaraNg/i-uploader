@@ -79,8 +79,6 @@ export async function UserComponent({ id }) {
                 className="aspect-[4/5] w-full flex-none rounded-2xl object-cover"
                 src={imgSrc(user.id_card_url)}
                 alt="image"
-                width={100}
-                height={100}
               />
             </div>
             <div className="flex-1">
@@ -89,8 +87,6 @@ export async function UserComponent({ id }) {
                 className="aspect-[4/5] w-full flex-none rounded-2xl object-cover"
                 src={imgSrc(user.passport_url)}
                 alt="image"
-                width={100}
-                height={100}
               />
             </div>
           </div>
@@ -102,97 +98,6 @@ export async function UserComponent({ id }) {
                   className="aspect-[4/5] w-full flex-none rounded-2xl object-cover"
                   src={imgSrc(utilityBillDocument.document_url)}
                   alt="image"
-                  width={100}
-                  height={100}
-                />
-              </div>
-
-    return (
-        <>
-            <Link href="/" className="btn btn-block btn-secondary mb-6">
-                Dashboard
-            </Link>
-            {!user && (
-                <div>
-                    <div className="alert alert-error shadow-lg mt-6">
-                        <div>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="stroke-current flex-shrink-0 h-6 w-6"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                />
-                            </svg>
-                            <span>Error! User not found!!!</span>
-                        </div>
-                    </div>
-                    <Quote />
-                </div>
-            )}
-            {user && (
-                <div
-                    key={user.id}
-                    className="gap-10 items-start bg-white rounded-lg p-8 mt-4"
-                >
-                    <div className="flex gap-4">
-                        <div className="flex-1">
-                            <p className="c-label">ID Card:</p>
-                            <img
-                                className="aspect-[4/5] w-full flex-none rounded-2xl object-cover"
-                                src={imgSrc(user.id_card_url)}
-                                alt="image"
-                            />
-                        </div>
-                        <div className="flex-1">
-                            <p className="c-label">Passport:</p>
-                            <img
-                                className="aspect-[4/5] w-full flex-none rounded-2xl object-cover"
-                                src={imgSrc(user.passport_url)}
-                                alt="image"
-                            />
-                        </div>
-                    </div>
-                    <div className="max-w-xl flex-auto space-y-2 mt-2">
-                        <div>
-                            <p className="c-label">Name:</p>
-                            <p className="c-text">{user.full_name}</p>
-                        </div>
-                        {user.email && (
-                            <div>
-                                <p className="c-label">Email:</p>
-                                <p className="c-text">{user.email}</p>
-                            </div>
-                        )}
-                        <div>
-                            <p className="c-label">Gender:</p>
-                            <p className="c-text">{user.gender}</p>
-                        </div>
-                        <div>
-                            <p className="c-label">Address:</p>
-                            <p className=" flex justify-between"><span className="c-text">{user.address}</span><Link href={`/user/${user.id}/verify-location`}><span className="btn p-2 text-xs rounded-md text-white" >
-                                Verify Address
-                            </span></Link></p>
-                            
-                        </div>
-                    </div>
-                </div>
-
-            )}
-            {residenceProofDocument && (
-              <div className="flex-1">
-                <p className="c-label">Residence Proof:</p>
-                <img
-                  className="aspect-[4/5] w-full flex-none rounded-2xl object-cover"
-                  src={imgSrc(residenceProofDocument.document_url)}
-                  alt="image"
-                  width={100}
-                  height={100}
                 />
               </div>
             )}
@@ -217,6 +122,16 @@ export async function UserComponent({ id }) {
               <p className="c-text">{user.address}</p>
             </div>
           </div>
+        </div>
+      )}
+      {residenceProofDocument && (
+        <div className="flex-1">
+          <p className="c-label">Residence Proof:</p>
+          <img
+            className="aspect-[4/5] w-full flex-none rounded-2xl object-cover"
+            src={imgSrc(residenceProofDocument.document_url)}
+            alt="image"
+          />
         </div>
       )}
       {documents.length > 0 && (
