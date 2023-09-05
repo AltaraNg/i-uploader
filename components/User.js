@@ -15,10 +15,12 @@ export async function UserComponent({ id }) {
   let user = null
   let documents = []
 
-  try {
-    user = await getUser(id)
-    documents = await getDocuments(id)
-  } catch (error) {}
+    try {
+        user = await getUser(id);
+        documents = await getDocuments(id);
+    } catch (error) {
+        console.error(error);
+    }
 
   const utilityBillDocument = documents.find(
     (item) => item.name === "utility_bill_url"
