@@ -4,9 +4,5 @@
 import { SessionProvider as Provider } from "next-auth/react";
 
 export function SessionProvider({ children, session }) {
-    return (
-        <Provider session={session}>
-            {children}
-        </Provider>
-    )
+   return <Provider session={session}>{children}</Provider>;
 }
