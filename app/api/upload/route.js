@@ -32,11 +32,7 @@ export async function POST(request) {
 
       const { user } = await getServerSession(authOptions);
 
-      if (
-         filename === "other" ||
-         filename === "utility_bill_url" ||
-         filename === "residence_proof_url"
-      ) {
+      if (filename === "other" || filename === "utility_bill" || filename === "residence_proof") {
          const documentableType = mysql.escape("App\\Models\\Customer");
          const newDocSql = `INSERT INTO new_documents (user_id, documentable_type, documentable_id, document_type, document_url, status, name) VALUES (${user.id}, ${documentableType}, ${id}, '${custom}', '${result.Key}', 'pending', '${custom}')`;
          await queryPromise(pool, newDocSql);

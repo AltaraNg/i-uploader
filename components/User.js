@@ -7,7 +7,7 @@ const myArray = [1, 2, 3, 4];
 
 const imgSrc = (img) => {
    if (!img) {
-      return "@public/images/avatar.webp"; // Removed "@/public" from the path
+      return "@public/images/avatar.webp";
    }
    return `${process.env.S3_HOST}/${img}`;
 };
@@ -23,8 +23,8 @@ export async function UserComponent({ id }) {
       // Handle error appropriately
    }
 
-   const utilityBillDocument = documents.find((item) => item.name === "utility_bill_url");
-   const residenceProofDocument = documents.find((item) => item.name === "residence_proof_url");
+   const utilityBillDocument = documents.find((item) => item.name === "utility_bill");
+   const residenceProofDocument = documents.find((item) => item.name === "residence_proof");
 
    const capitalizeStringWithoutUnderscore = (str) => {
       const words = str.split("_");

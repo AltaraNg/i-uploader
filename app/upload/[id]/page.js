@@ -65,8 +65,8 @@ export default function Upload({ params }) {
                   >
                      <option value="id_card_url">ID Card</option>
                      <option value="passport_url">Passport</option>
-                     <option value="utility_bill_url">Utility Bill</option>
-                     <option value="residence_proof_url">Residence Proof</option>
+                     <option value="utility_bill">Utility Bill</option>
+                     <option value="residence_proof">Residence Proof</option>
                      <option value="other">Others</option>
                   </select>
                   {type == "other" && (
