@@ -34,8 +34,16 @@ export async function POST(request) {
 
       if (filename === "other" || filename === "utility_bill" || filename === "residence_proof") {
          const documentableType = mysql.escape("App\\Models\\Customer");
-         const newDocSql = `INSERT INTO new_documents (user_id, documentable_type, documentable_id, document_type, document_url, status, name) VALUES (${user.id}, ${documentableType}, ${id}, '${custom}', '${result.Key}', 'pending', '${custom}')`;
-         await queryPromise(pool, newDocSql);
+         const docExistSql = `SELECT * FROM new_documents WHERE document_type = '${filename}' AND documentable_id = '${id}'`;
+         const docExistResponse = await queryPromise(pool, docExistSql);
+
+         if (docExistResponse.length > 0) {
+            const updateExistingDocumentSql = `UPDATE new_documents SET document_url = '${result.Key}' WHERE documentable_id = '${id}' AND document_type = '${filename}'`;
+            await queryPromise(pool, updateExistingDocumentSql);
+         } else {
+            const newDocSql = `INSERT INTO new_documents (user_id, documentable_type, documentable_id, document_type, document_url, status, name) VALUES (${user.id}, ${documentableType}, ${id}, '${custom}', '${result.Key}', 'pending', '${custom}')`;
+            await queryPromise(pool, newDocSql);
+         }
       } else {
          const sql = `UPDATE documents SET ${filename} = '${result.Key}', user_id = ${user.id} WHERE customer_id = ${id}`;
          const verificationSql = `UPDATE verifications SET ${path} = 1 WHERE customer_id = ${id}`;

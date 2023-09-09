@@ -64,6 +64,7 @@ export async function UserComponent({ id }) {
                <Quote />
             </div>
          )}
+
          {user && (
             <div key={user.id} className="gap-10 items-start bg-white rounded-lg p-8 mt-4">
                <div className="flex gap-4">
