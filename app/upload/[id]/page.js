@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import Camera from "./Camera";
 import cn from "classnames";
@@ -26,10 +25,9 @@ export default function Upload({ params }) {
                id: params.id,
                filename: type,
                data: base64data,
-               custom: fileName,
+               custom: type === "other" ? fileName : type,
             }),
          });
-
          await response.json();
          router.push(`/user/${params.id}`);
       } catch (error) {
@@ -65,6 +63,8 @@ export default function Upload({ params }) {
                   >
                      <option value="id_card_url">ID Card</option>
                      <option value="passport_url">Passport</option>
+                     <option value="utility_bill">Utility Bill</option>
+                     <option value="residence_proof">Residence Proof</option>
                      <option value="other">Others</option>
                   </select>
                   {type == "other" && (

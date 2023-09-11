@@ -19,8 +19,21 @@ export async function UserComponent({ id }) {
       user = await getUser(id);
       documents = await getDocuments(id);
    } catch (error) {
-      console.error(error);
+      // Handle error appropriately
    }
+
+   const utilityBillDocument = documents.find((item) => item.name === "utility_bill");
+   const residenceProofDocument = documents.find((item) => item.name === "residence_proof");
+
+   const capitalizeStringWithoutUnderscore = (str) => {
+      const words = str.split("_");
+      const capitalizedWords = words
+         .map((word) => (word === "url" ? "" : word.charAt(0).toUpperCase() + word.slice(1)))
+         .filter((word) => word !== "")
+         .join(" ");
+
+      return capitalizedWords;
+   };
 
    return (
       <>
@@ -50,6 +63,7 @@ export async function UserComponent({ id }) {
                <Quote />
             </div>
          )}
+
          {user && (
             <div key={user.id} className="gap-10 items-start bg-white rounded-lg p-8 mt-4">
                <div className="flex gap-4">
@@ -70,6 +84,28 @@ export async function UserComponent({ id }) {
                      />
                   </div>
                </div>
+               <div className="flex gap-4 mt-5">
+                  {utilityBillDocument && (
+                     <div className="flex-1">
+                        <p className="c-label">Utility Bill:</p>
+                        <img
+                           className="aspect-[4/5] w-full flex-none rounded-2xl object-cover"
+                           src={imgSrc(utilityBillDocument.document_url)}
+                           alt="image"
+                        />
+                     </div>
+                  )}
+                  {residenceProofDocument && (
+                     <div className="flex-1">
+                        <p className="c-label">Residence Proof:</p>
+                        <img
+                           className="aspect-[4/5] w-full flex-none rounded-2xl object-cover"
+                           src={imgSrc(residenceProofDocument.document_url)}
+                           alt="image"
+                        />
+                     </div>
+                  )}
+               </div>
                <div className="max-w-xl flex-auto space-y-2 mt-2">
                   <div>
                      <p className="c-label">Name:</p>
@@ -87,23 +123,17 @@ export async function UserComponent({ id }) {
                   </div>
                   <div>
                      <p className="c-label">Address:</p>
-                     <p className=" flex justify-between">
-                        <span className="c-text">{user.address}</span>
-                        <Link href={`/user/${user.id}/verify-location`}>
-                           <span className="btn p-2 text-xs rounded-md text-white">
-                              Verify Address
-                           </span>
-                        </Link>
-                     </p>
+                     <p className="c-text">{user.address}</p>
                   </div>
                </div>
             </div>
          )}
+
          {documents.length > 0 && (
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 bg-slate-50 p-4 mt-4 mb-6 rounded">
                {documents.map((item, key) => (
                   <div key={key}>
-                     <p className="c-label">{item.name}</p>
+                     <p className="c-label">{capitalizeStringWithoutUnderscore(item.name)}</p>
                      <img
                         className="flex-none w-full rounded-2xl object-contain"
                         src={imgSrc(item.document_url)}
