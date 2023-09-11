@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import { getUser, getDocuments } from "@/utils/db";
 import Link from "next/link";
 import Quote from "@/components/Quote";
@@ -7,7 +6,7 @@ const myArray = [1, 2, 3, 4];
 
 const imgSrc = (img) => {
    if (!img) {
-      return "@public/images/avatar.webp";
+      return "@/public/images/avatar.webp";
    }
    return `${process.env.S3_HOST}/${img}`;
 };

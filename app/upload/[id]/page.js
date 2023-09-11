@@ -1,6 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
-
 import { useState } from "react";
 import Camera from "./Camera";
 import cn from "classnames";
