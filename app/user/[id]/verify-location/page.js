@@ -36,7 +36,7 @@ export default function VerifyLocation({ params }) {
    }
 
    async function coordinateToPhysicalAddress(longitude, latitude) {
-      let apiKey = process.env.GEOPIFY_KEY;
+      let apiKey = process.env.NEXT_PUBLIC_GEOPIFY_KEY;
       let resp;
       await fetch(
          `https://api.geoapify.com/v1/geocode/reverse?lat=${latitude}&lon=${longitude}&format=json&apiKey=${apiKey}`,
